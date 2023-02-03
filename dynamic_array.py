@@ -136,14 +136,12 @@ class DynamicArray:
         TODO: Write this implementation
         """
 
-        if new_capacity > self._capacity:
+        if new_capacity > self._size:
             resized_array = StaticArray(new_capacity)
             for curr_index in range(self.length()):
                 resized_array.set(curr_index, self.get_at_index(curr_index))
             self._capacity = new_capacity
             self._data = resized_array
-
-        pass
 
     def append(self, value: object) -> None:
         """
