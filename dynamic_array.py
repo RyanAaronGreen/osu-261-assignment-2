@@ -136,7 +136,7 @@ class DynamicArray:
         TODO: Write this implementation
         """
 
-        if new_capacity >= self._size:
+        if new_capacity > 0 and new_capacity >= self._size:
             resized_array = StaticArray(new_capacity)
             for curr_index in range(self.length()):
                 resized_array.set(curr_index, self.get_at_index(curr_index))
