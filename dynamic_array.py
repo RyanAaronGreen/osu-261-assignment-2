@@ -271,8 +271,28 @@ def find_mode(arr: DynamicArray) -> (DynamicArray, int):
     """
     TODO: Write this implementation
     """
-    pass
 
+    new_array = DynamicArray()
+    freq = 1
+    count = 1
+
+    for curr_index in range(arr.length()):
+        curr_value = arr.get_at_index(curr_index)
+        next_value = arr.get_at_index(curr_index + 1) if curr_index < arr.length() - 1 else None
+
+        if curr_value == next_value:
+            count += 1
+        else:
+            count = 1
+
+        if count > freq:
+            freq = count
+            new_array = arr.slice(0, 0)
+            new_array.append(curr_value)
+        elif count == freq:
+            new_array.append(curr_value)
+
+    return (new_array, freq)
 
 # ------------------- BASIC TESTING -----------------------------------------
 
