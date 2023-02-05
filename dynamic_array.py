@@ -203,7 +203,17 @@ class DynamicArray:
         """
         TODO: Write this implementation
         """
-        pass
+        if size < 0:
+            raise DynamicArrayException
+
+        if start_index < 0 or start_index > self._capacity - 1 or start_index + size > self._size:
+            raise DynamicArrayException
+
+        new_array = DynamicArray()
+        for curr_index in range(size):
+            new_array.insert_at_index(curr_index, self.get_at_index(curr_index + start_index))
+
+        return new_array
 
     def merge(self, second_da: "DynamicArray") -> None:
         """
