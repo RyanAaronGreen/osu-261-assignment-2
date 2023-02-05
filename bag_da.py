@@ -88,7 +88,7 @@ class Bag:
 
         for curr_index in range(self._da.length()):
             curr_value = self._da.get_at_index(curr_index)
-            if second_bag.count(curr_value) != second_bag._da.filter(lambda element: element == curr_value).length():
+            if self.count(curr_value) != second_bag._da.filter(lambda element: element == curr_value).length():
                 return False
 
         return True
