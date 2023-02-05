@@ -46,25 +46,33 @@ class Bag:
         """
         TODO: Write this implementation
         """
-        pass
+        self._da.append(value)
 
     def remove(self, value: object) -> bool:
         """
         TODO: Write this implementation
         """
-        pass
+        for curr_index in range(self._da.length()):
+            if self._da.get_at_index(curr_index) == value:
+                self._da.remove_at_index(curr_index)
+                return True
+
+        return False
 
     def count(self, value: object) -> int:
         """
         TODO: Write this implementation
         """
-        pass
+
+        matching_values_array = self._da.filter(lambda element: element == value)
+        return matching_values_array.length()
 
     def clear(self) -> None:
         """
         TODO: Write this implementation
         """
-        pass
+
+        self._da = DynamicArray()
 
     def equal(self, second_bag: "Bag") -> bool:
         """
