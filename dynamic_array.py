@@ -1,10 +1,9 @@
-# Name:
-# OSU Email:
-# Course: CS261 - Data Structures
-# Assignment:
-# Due Date:
-# Description:
-
+# Name:         Ryan Green
+# OSU Email:    greenrya@oregonstate.edu
+# Course:       CS261 - Data Structures
+# Assignment:   Assignment 2: Dynamic Array and ADT Implementation (Bag Dynamic Array)
+# Due Date:     February 06, 2023.
+# Description:  This program a DynamicArray which adds functionality to the underlying StaticArray
 
 from static_array import StaticArray
 
@@ -133,7 +132,8 @@ class DynamicArray:
 
     def resize(self, new_capacity: int) -> None:
         """
-        TODO: Write this implementation
+        Resizes the DynamicArrays capacity to a specified amount. If the new capacity is less than the size of the
+        currently stored data, then this method will do nothing.
         """
 
         if new_capacity > 0 and new_capacity >= self._size:
@@ -145,7 +145,8 @@ class DynamicArray:
 
     def append(self, value: object) -> None:
         """
-        TODO: Write this implementation
+        Adds a new specified value to the end of the DynamicArray. If there is no more capacity for the new value,
+        then the method will double the current DynamicArray's capacity to compensate.
         """
         if self._size >= self._capacity:
             self.resize(self._capacity * 2)
@@ -155,7 +156,9 @@ class DynamicArray:
 
     def insert_at_index(self, index: int, value: object) -> None:
         """
-        TODO: Write this implementation
+        Inserts a new specified value in the DynamicArray at a specified index. The currently existing values will
+        shift one value to the right. If there is no more capacity for the new value, then the method will double the
+        current DynamicArray's capacity to compensate.
         """
         # If an invalid index is given, raise a DynamicArrayException
         if index < 0 or index > self._size:
@@ -174,10 +177,11 @@ class DynamicArray:
 
         self.set_at_index(index, value)
 
-
     def remove_at_index(self, index: int) -> None:
         """
-        TODO: Write this implementation
+        Removes the value at a specified index in the DynamicArray . The currently existing values will shift one value
+        to the left. If the DynamicArray's current size is less than a quarter of the capacity, then the method will
+        resize the DynamicArray's capacity in response.
         """
 
         # If an invalid index is given, raise a DynamicArrayException
@@ -201,7 +205,8 @@ class DynamicArray:
 
     def slice(self, start_index: int, size: int) -> "DynamicArray":
         """
-        TODO: Write this implementation
+        Returns a new DynamicArray with a specified size containing the consecutive elements starting from the
+        specified start_index
         """
         if size < 0 or start_index < 0:
             raise DynamicArrayException
@@ -217,7 +222,7 @@ class DynamicArray:
 
     def merge(self, second_da: "DynamicArray") -> None:
         """
-        TODO: Write this implementation
+        Appends all the elements from the specified second_da DynamicArray into the current DynamicArray
         """
 
         for curr_index in range(second_da.length()):
@@ -225,7 +230,7 @@ class DynamicArray:
 
     def map(self, map_func) -> "DynamicArray":
         """
-        TODO: Write this implementation
+        Returns a new DynamicArray with elements that match a specified mapping function
         """
         new_array = DynamicArray()
 
@@ -236,7 +241,7 @@ class DynamicArray:
 
     def filter(self, filter_func) -> "DynamicArray":
         """
-        TODO: Write this implementation
+        Returns a new DynamicArray with elements that match a specified filter function
         """
 
         new_array = DynamicArray()
@@ -252,7 +257,7 @@ class DynamicArray:
 
     def reduce(self, reduce_func, initializer=None) -> object:
         """
-        TODO: Write this implementation
+        Returns the reduced value of the DynamicArray based on a specified reduction function
         """
 
         offset = 1 if initializer is None else 0
@@ -265,11 +270,11 @@ class DynamicArray:
         return initial_value
 
 
-
-
 def find_mode(arr: DynamicArray) -> (DynamicArray, int):
     """
-    TODO: Write this implementation
+    Finds the values that appear most frequently in the DynamicArray as well as their frequency
+
+    Returns a tuple with the most frequent values as a DynamicArray and the frequency as an int
     """
 
     new_array = DynamicArray()
@@ -293,6 +298,7 @@ def find_mode(arr: DynamicArray) -> (DynamicArray, int):
             new_array.append(curr_value)
 
     return (new_array, freq)
+
 
 # ------------------- BASIC TESTING -----------------------------------------
 

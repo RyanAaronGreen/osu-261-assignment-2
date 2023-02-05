@@ -1,9 +1,9 @@
-# Name:
-# OSU Email:
-# Course: CS261 - Data Structures
-# Assignment:
-# Due Date:
-# Description:
+# Name:         Ryan Green
+# OSU Email:    greenrya@oregonstate.edu
+# Course:       CS261 - Data Structures
+# Assignment:   Assignment 2: Dynamic Array and ADT Implementation (Bag Dynamic Array)
+# Due Date:     February 06, 2023.
+# Description:  This program contains a Bag class that uses a DynamicArray under the hood.
 
 
 from dynamic_array import *
@@ -44,13 +44,15 @@ class Bag:
 
     def add(self, value: object) -> None:
         """
-        TODO: Write this implementation
+        Adds the value to the bag by appending it to its DynamicArray
         """
         self._da.append(value)
 
     def remove(self, value: object) -> bool:
         """
-        TODO: Write this implementation
+        Removes the first instance of the value in the bag
+
+        Returns True if something was removed, else it returns False
         """
         for curr_index in range(self._da.length()):
             if self._da.get_at_index(curr_index) == value:
@@ -61,7 +63,7 @@ class Bag:
 
     def count(self, value: object) -> int:
         """
-        TODO: Write this implementation
+        Returns the number of times a certain value appears in the bag
         """
 
         matching_values_array = self._da.filter(lambda element: element == value)
@@ -69,14 +71,16 @@ class Bag:
 
     def clear(self) -> None:
         """
-        TODO: Write this implementation
+        Removes all items from the bag
         """
 
         self._da = DynamicArray()
 
     def equal(self, second_bag: "Bag") -> bool:
         """
-        TODO: Write this implementation
+        Determines if the content of the bag match the contents of a second bag irrespective of order
+
+        Returns True if they match else returns False
         """
 
         if self._da.length() != second_bag._da.length():
