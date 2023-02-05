@@ -219,25 +219,52 @@ class DynamicArray:
         """
         TODO: Write this implementation
         """
-        pass
+
+        for curr_index in range(second_da.length()):
+            self.insert_at_index(self._size, second_da.get_at_index(curr_index))
 
     def map(self, map_func) -> "DynamicArray":
         """
         TODO: Write this implementation
         """
-        pass
+        new_array = DynamicArray()
+
+        for curr_index in range(self._size):
+            new_array.insert_at_index(curr_index, map_func(self.get_at_index(curr_index)))
+
+        return new_array
 
     def filter(self, filter_func) -> "DynamicArray":
         """
         TODO: Write this implementation
         """
-        pass
+
+        new_array = DynamicArray()
+        offset = 0
+
+        for curr_index in range(self._size):
+            if filter_func(self.get_at_index(curr_index)):
+                new_array.insert_at_index(curr_index - offset, self.get_at_index(curr_index))
+            else:
+                offset += 1
+
+        return new_array
 
     def reduce(self, reduce_func, initializer=None) -> object:
         """
         TODO: Write this implementation
         """
-        pass
+
+        offset = 1 if initializer is None else 0
+        initial_value = self.get_at_index(0) if initializer is None and self._size > 0 else initializer
+
+        if self._size > 0 or initializer is None:
+            for curr_index in range(self._size - offset):
+                initial_value = reduce_func(initial_value, self.get_at_index(curr_index + offset))
+
+        return initial_value
+
+
 
 
 def find_mode(arr: DynamicArray) -> (DynamicArray, int):
