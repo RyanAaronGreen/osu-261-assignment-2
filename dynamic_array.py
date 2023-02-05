@@ -187,7 +187,7 @@ class DynamicArray:
         # Check the size against the capacity, if already full, double the capacity.
         if self._size < int(self._capacity * 0.25) and self._capacity > 10:
             if 10 <= int(self._capacity / 2):
-                self.resize(int(self._capacity / 2))
+                self.resize(int(self._size * 2))
             else:
                 self.resize(10)
 
