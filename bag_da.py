@@ -78,19 +78,36 @@ class Bag:
         """
         TODO: Write this implementation
         """
-        pass
+
+        if self._da.length() != second_bag._da.length():
+            return False
+
+        for curr_index in range(self._da.length()):
+            curr_value = self._da.get_at_index(curr_index)
+            if second_bag.count(curr_value) == 0:
+                return False
+
+        return True
 
     def __iter__(self):
         """
         TODO: Write this implementation
         """
-        pass
+
+        self._index = 0
+
+        return self
 
     def __next__(self):
         """
         TODO: Write this implementation
         """
-        pass
+        try:
+            element = self._da.get_at_index(self._index)
+        except DynamicArrayException:
+            raise StopIteration
+        self._index = self._index + 1
+        return element
 
 
 # ------------------- BASIC TESTING -----------------------------------------
