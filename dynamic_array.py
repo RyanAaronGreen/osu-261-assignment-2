@@ -203,10 +203,10 @@ class DynamicArray:
         """
         TODO: Write this implementation
         """
-        if size < 0:
+        if size < 0 or start_index < 0:
             raise DynamicArrayException
 
-        if start_index < 0 or start_index > self._capacity - 1 or start_index + size > self._size:
+        if start_index > self._size - 1 or start_index + size > self._size:
             raise DynamicArrayException
 
         new_array = DynamicArray()
