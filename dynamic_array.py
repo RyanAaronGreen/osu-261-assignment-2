@@ -157,13 +157,47 @@ class DynamicArray:
         """
         TODO: Write this implementation
         """
-        pass
+        # If an invalid index is given, raise a DynamicArrayException
+        if index < 0 or index > self._size:
+            raise DynamicArrayException
+
+        # Check the size against the capacity, if already full, double the capacity.
+        if self._size >= self._capacity:
+            self.resize(self._capacity * 2)
+
+        # Add new value at the index and shift the values after index up one index.
+        self._size += 1
+        for curr_index in range(self._size - index - 1):
+            index_offset = self._size - curr_index - 1
+            previous_value = self.get_at_index(index_offset - 1)
+            self.set_at_index(index_offset, previous_value)
+
+        self.set_at_index(index, value)
+
 
     def remove_at_index(self, index: int) -> None:
         """
         TODO: Write this implementation
         """
-        pass
+
+        # If an invalid index is given, raise a DynamicArrayException
+        if index < 0 or index > self._size - 1:
+            raise DynamicArrayException
+
+        # Check the size against the capacity, if already full, double the capacity.
+        if self._size < int(self._capacity * 0.25) and self._capacity > 10:
+            if 10 <= int(self._capacity / 2):
+                self.resize(int(self._capacity / 2))
+            else:
+                self.resize(10)
+
+        # Add new value at the index and shift the values after index up one index.
+        for curr_index in range(self._size - index - 1):
+            index_offset = curr_index + index
+            next_value = self.get_at_index(index_offset + 1)
+            self.set_at_index(index_offset, next_value)
+
+        self._size -= 1
 
     def slice(self, start_index: int, size: int) -> "DynamicArray":
         """
